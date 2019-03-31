@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h3>Transaction Stats</h3>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <select id="month_selector" class="form-control">
+                    <option value="0">Select a month</option>
+                    {% for date in dates  %}
+                        <option value="{{ date }}">{{ date }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    <div style="padding-top: 3%" id="stats_location">
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var url = "{{ path('transaction_stats_data') }}";
+
+            $('#month_selector').change(function(){
+                var value = this.value;
+
+                if(value && value !== '0'){
+                    $("#stats_location").prop('disabled','disabled');
+                    value = value.split('-');
+                    if(value.length === 2){
+                        var year = value[0];
+                        var month = value[1];
+                        $.ajax({
+                            type: "POST",
+                            url: url,
+                            dataType: "json",
+                            data: {'month' : month,'year' : year},
+                            success: function(data) {
+                                $("#stats_location").empty().append(data.response);
+                            },
+                            complete: function(){
+                                $("#stats_location").prop('disabled',false);
+                            }
+                        });
+                    }
+                }
+
+            });
+        });
+    </script>
+{% endblock %}

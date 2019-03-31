@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Transactions Manager{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/responsive.bootstrap.min.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('css/style.css') }}" />
+        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="{{ path('transaction_index') }}">Transactions Manager</a>
+            <a class="navbar-brand" href="{{ path('transaction_stats') }}">Transactions stats</a>
+        </nav>
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+
+    </body>
+</html>

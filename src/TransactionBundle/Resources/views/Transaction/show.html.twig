@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <h3>Transaction :{{ transaction.title }}</h3>
+
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{ transaction.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            <td>{{ transaction.amount }}</td>
+                        </tr>
+                        <tr>
+                            <th>Isinput</th>
+                            <td>{% if transaction.isInput %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ transaction.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Isvalid</th>
+                            <td>{% if transaction.isValid %}Yes{% else %}No{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Created At</th>
+                            <td>{% if transaction.createdAt %}{{ transaction.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <td>{{ transaction.category.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tags</th>
+                            <td>{{ transaction.stringTags }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12">
+                <a href="{{ path('transaction_edit', { 'id': transaction.id }) }}" class="btn btn-success">Modifier</a>
+                <a href="{{ path('transaction_index') }}" class="btn btn-info"><span>Liste des transactions</span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

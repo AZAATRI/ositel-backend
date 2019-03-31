@@ -1,0 +1,12 @@
+transaction:
+    resource: "@TransactionBundle/Controller/TransactionController.php"
+    type:     annotation
+    prefix:   /transaction
+transaction_stats:
+    resource: "@TransactionBundle/Controller/TransactionController.php"
+    type:     annotation
+    prefix:   /transaction
+transaction_api:
+    resource: "@TransactionBundle/Controller/TransactionApiController.php"
+    type:     rest
+    prefix:   /api/transaction
